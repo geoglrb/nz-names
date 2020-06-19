@@ -45,7 +45,7 @@
     dataType: "json",
     url: "https://geoglrb.github.io/nz-names/tereo-places.geojson",
     success: function(data) {
-
+      console.log(data);
       const geojsonLayer = TagmapLayer({
           id: 'testing',
           data.features,
