@@ -25,17 +25,12 @@
 
  <script type="text/javascript">
 
-  /*const {DeckGL, GeoJsonLayer} = deck;*/
-
-  var geojsonLayerNew;
-  var myDeckGL;
-
   $.getJSON(
     "https://geoglrb.github.io/nz-names/tereo-places.geojson",
     function(data) {
       data = data.features;
       console.log(data);
-      geojsonLayerNew = new deck.TextLayer({
+      const geojsonLayerNew = new deck.TextLayer({
           id: 'text-layer',
           data,
           pickable: true,
@@ -56,7 +51,7 @@
         })
       */
 
-      myDeckGL = new deck.DeckGL({
+      const myDeckGL = new deck.DeckGL({
          mapboxApiAccessToken: 'pk.eyJ1IjoiZ2VvZ2xiIiwiYSI6ImNqcGtqcjFpZjA0MjEzeG1ybWFuYXRwNGYifQ.EQNuGgIXLNfPhI_MMRVc4A',
          mapStyle: 'mapbox://styles/mapbox/light-v9',
          latitude: -41,
