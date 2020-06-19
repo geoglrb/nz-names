@@ -45,12 +45,13 @@
     "https://geoglrb.github.io/nz-names/tereo-places.geojson",
     function(data) {
       console.log(data);
+      const datatouse = data.features;
       const geojsonLayer = new TextLayer({
           id: 'testing',
-          data: data.features,
-          getLabel: x => x.properties.name,
+          datatouse,
+          getText: x => x.properties.name,
           getPosition: x => x.geometry.coordinates,
-          getColor: [0, 0, 0],
+          getColor: [0, 0, 0,255],
           getSize: 20/*,
           sizeScale: 30/20.*/
         });
