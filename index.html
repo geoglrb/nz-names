@@ -46,12 +46,12 @@
     function(data) {
       const datatouse = data.features;
       console.log(datatouse);
-      const geojsonLayer = new deck.TextLayer({
+      const geojsonLayerNew = new deck.TextLayer({
           id: 'text-layer',
           datatouse,
           pickable: true,
           getText: x => x.properties.name,
-          getPosition: x => x.geometry.coordinates,
+          getPosition: x => x.geometry.coordinates.reverse(),
           getColor: [0, 0, 0,255],
           getSize: 20/*,
           sizeScale: 30/20.*/
@@ -75,7 +75,7 @@
          zoom: 6,
          maxZoom: 16,
          pitch: 0,
-         layers: [geojsonLayer]
+         layers: [geojsonLayerNew]
        });
      }
   );
