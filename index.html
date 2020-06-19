@@ -46,9 +46,10 @@
     function(data) {
       const datatouse = data.features;
       console.log(datatouse);
-      const geojsonLayer = new TextLayer({
-          id: 'testing',
+      const geojsonLayer = new deck.TextLayer({
+          id: 'text-layer',
           datatouse,
+          pickable: True,
           getText: x => x.properties.name,
           getPosition: x => x.geometry.coordinates,
           getColor: [0, 0, 0,255],
