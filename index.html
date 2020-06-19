@@ -1,9 +1,9 @@
 <html>
  <head>
-   <meta charset="UTF-8">
+   <meta charset="utf8"/>
    <title>text labels</title>
 
-   <script src="https://unpkg.com/deck.gl@~5.2.0/deckgl.min.js"></script>
+   <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
    <!--<script src="./tagmap-layer/tagmap-layer.js"></script>-->
    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -34,11 +34,13 @@
       const geojsonLayerNew = new deck.TextLayer({
           id: 'text-layer',
           data,
+          characterSet:"-ēīūŌōāĀabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
           pickable: true,
           getText: x => x.properties.name,
           getPosition: x => x.geometry.coordinates,
           getColor: [0, 0, 0,255],
-          getSize: 20/*,
+          getSize: 20
+          /*,
           sizeScale: 30/20.*/
         });
       /*
@@ -55,11 +57,14 @@
       const myDeckGL = new deck.DeckGL({
          mapboxApiAccessToken: 'pk.eyJ1IjoiZ2VvZ2xiIiwiYSI6ImNqcGtqcjFpZjA0MjEzeG1ybWFuYXRwNGYifQ.EQNuGgIXLNfPhI_MMRVc4A',
          mapStyle: 'mapbox://styles/mapbox/light-v9',
-         latitude: -41,
-         longitude: 173.23,
-         zoom: 6,
-         maxZoom: 16,
-         pitch: 0,
+         initialViewState: {
+           latitude: -41,
+           longitude: 173.23,
+           zoom: 6,
+           maxZoom: 16,
+           pitch: 0
+         },
+         controller: true,
          layers: [geojsonLayerNew]
        });
      }
