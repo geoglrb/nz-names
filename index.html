@@ -44,17 +44,17 @@
   $.ajax({
     dataType: "json",
     url: "https://geoglrb.github.io/nz-names/tereo-places.geojson",
-    success: function(thedata) {
-      console.log(thedata);
+    success: function(data) {
+      console.log(data);
       const geojsonLayer = TextLayer({
           id: 'testing',
-          data: thedata.features,
+          data: data.features,
           getLabel: x => x.properties.name,
           getPosition: x => x.geometry.coordinates,
           getColor: [29, 145, 192],
           getSize: 20,
           sizeScale: 30/20.
-        })
+        });
       /*
       const geojsonLayer = TagmapLayer({
           id: 'testing',
@@ -76,7 +76,7 @@
          pitch: 0,
          layers: [geojsonLayer]
        });
-     }
+     };
   );
 
 
