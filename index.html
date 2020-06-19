@@ -44,11 +44,11 @@
   $.ajax({
     dataType: "json",
     url: "https://geoglrb.github.io/nz-names/tereo-places.geojson",
-    success: function(data) {
-      console.log(data);
+    success: function(thedata) {
+      console.log(thedata);
       const geojsonLayer = TextLayer({
           id: 'testing',
-          data.features,
+          data: thedata.features,
           getLabel: x => x.properties.name,
           getPosition: x => x.geometry.coordinates,
           getColor: [29, 145, 192],
