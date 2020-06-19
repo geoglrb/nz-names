@@ -41,10 +41,9 @@
 
   const {DeckGL, GeoJsonLayer} = deck;
 
-  $.ajax({
-    dataType: "json",
-    url: "https://geoglrb.github.io/nz-names/tereo-places.geojson",
-    success: function(data) {
+  $.getJSON(
+    "https://geoglrb.github.io/nz-names/tereo-places.geojson",
+    function(data) {
       console.log(data);
       const geojsonLayer = TextLayer({
           id: 'testing',
@@ -76,7 +75,7 @@
          pitch: 0,
          layers: [geojsonLayer]
        });
-     };
+     }
   );
 
 
