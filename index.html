@@ -1,0 +1,106 @@
+<html>
+ <head>
+   <title>text labels</title>
+
+   <script src="https://unpkg.com/deck.gl@^6.0.0/deckgl.min.js"></script>
+   <script src="./tagmap-layer/tagmap-layer.js"></script>
+
+   <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js"></script>
+
+   <style type="text/css">
+     body {
+       width: 100vw;
+       height: 100vh;
+       margin: 0;
+     }
+     #tooltip:empty {
+       display: none;
+     }
+     #tooltip {
+       font-family: Helvetica, Arial, sans-serif;
+       font-size: 11px;
+       position: absolute;
+       padding: 4px;
+       margin: 8px;
+       background: rgba(0, 0, 0, 0.8);
+       color: #fff;
+       max-width: 300px;
+       font-size: 10px;
+       z-index: 9;
+       pointer-events: none;
+     }
+   </style>
+ </head>
+
+ <body>
+   <div id="tooltip"></div>
+ </body>
+
+ <script type="text/javascript">
+
+   const {DeckGL, GeoJsonLayer} = deck;
+
+   const LIGHT_SETTINGS = {
+     lightsPosition: [-125, 50.5, 5000, -122.8, 48.5, 8000],
+     ambientRatio: 0.2,
+     diffuseRatio: 0.5,
+     specularRatio: 0.3,
+     lightsStrength: [2.0, 0.0, 1.0, 0.0],
+     numberOfLights: 2
+   };
+
+
+
+
+const DEFAULT_COLOR = [29, 145, 192];
+
+const INITIAL_VIEW_STATE = {
+ latitude: 39.1,
+ longitude: -94.57,
+ zoom: 3.8,
+ maxZoom: 16,
+ pitch: 0,
+ bearing: 0
+};
+
+const geojsonLayer = new GeoJsonLayer({
+     data: 'https://geoglrb.github.io/nz-names/tereo-places.geojson',
+     id: 'testing',
+     opacity: 0.8,
+     stroked: true,
+     filled: true,
+     radius:100,
+     extruded: true,
+     wireframe: true,
+     //fp64: true,
+     lightSettings: LIGHT_SETTINGS,
+
+     getElevation: f => f.properties.COUNT_FLOORS * 5,
+     getFillColor: function(f) {
+         if (f.properties.DATE_BUILT) {
+            return colorScale(Number(f.properties.DATE_BUILT.substring(0,4))); }
+         else {
+            return colorScale(2019);
+         }
+     },
+     getLineColor: [255, 255, 255],
+
+     pickable: true,
+     //onHover: updateTooltip
+   });
+
+   new DeckGL({
+     mapboxApiAccessToken: 'pk.eyJ1IjoiZ2VvZ2xiIiwiYSI6ImNqcGtqcjFpZjA0MjEzeG1ybWFuYXRwNGYifQ.EQNuGgIXLNfPhI_MMRVc4A',
+     mapStyle: 'mapbox://styles/mapbox/light-v9',
+     latitude: 49.254,
+     longitude: -123.23,
+     zoom: 13,
+     maxZoom: 16,
+     pitch: 45,
+     layers: [geojsonLayer]
+   });
+
+
+
+ </script>
+</html>
