@@ -45,7 +45,7 @@
     "https://geoglrb.github.io/nz-names/tereo-places.geojson",
     function(data) {
       console.log(data);
-      const geojsonLayer = TextLayer({
+      const geojsonLayer = new TextLayer({
           id: 'testing',
           data: data.features,
           getLabel: x => x.properties.name,
