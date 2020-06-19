@@ -44,8 +44,8 @@
   $.getJSON(
     "https://geoglrb.github.io/nz-names/tereo-places.geojson",
     function(data) {
-      console.log(data);
       const datatouse = data.features;
+      console.log(datatouse);
       const geojsonLayer = new TextLayer({
           id: 'testing',
           datatouse,
