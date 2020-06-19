@@ -27,17 +27,20 @@
 
   /*const {DeckGL, GeoJsonLayer} = deck;*/
 
+  var geojsonLayerNew;
+  var myDeckGL;
+
   $.getJSON(
     "https://geoglrb.github.io/nz-names/tereo-places.geojson",
     function(data) {
-      const datatouse = data.features;
-      console.log(datatouse);
-      const geojsonLayerNew = new deck.TextLayer({
+      data = data.features;
+      console.log(data);
+      geojsonLayerNew = new deck.TextLayer({
           id: 'text-layer',
-          datatouse,
+          data,
           pickable: true,
           getText: x => x.properties.name,
-          getPosition: x => x.geometry.coordinates.reverse(),
+          getPosition: x => x.geometry.coordinates,
           getColor: [0, 0, 0,255],
           getSize: 20/*,
           sizeScale: 30/20.*/
@@ -53,9 +56,9 @@
         })
       */
 
-       new deck.DeckGL({
-         /*mapboxApiAccessToken: 'pk.eyJ1IjoiZ2VvZ2xiIiwiYSI6ImNqcGtqcjFpZjA0MjEzeG1ybWFuYXRwNGYifQ.EQNuGgIXLNfPhI_MMRVc4A',
-         mapStyle: 'mapbox://styles/mapbox/light-v9',*/
+      myDeckGL = new deck.DeckGL({
+         mapboxApiAccessToken: 'pk.eyJ1IjoiZ2VvZ2xiIiwiYSI6ImNqcGtqcjFpZjA0MjEzeG1ybWFuYXRwNGYifQ.EQNuGgIXLNfPhI_MMRVc4A',
+         mapStyle: 'mapbox://styles/mapbox/light-v9',
          latitude: -41,
          longitude: 173.23,
          zoom: 6,
